@@ -1,6 +1,6 @@
 public class LinkedList<T extends Comparable<T>> implements List<T> {
-    private boolean isSorted; //static?
-    int size; //public?
+    private boolean isSorted;
+    int size;
     private Node<T> head;
     private Node<T> tail;
 
@@ -11,7 +11,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         size = 0;
         isSorted = true;
     }
-    public boolean add(T element) { // DONE //O(1)
+    public boolean add(T element) { 
         boolean isAdded = false;
         if (element == null) {
             isAdded = false;
@@ -38,7 +38,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 
         return isAdded;
     }
-    public boolean add(int index, T element) { //DONE
+    public boolean add(int index, T element) { 
         boolean isAdded = false;
         //adding to an empty list
         if (head == null) {
@@ -95,13 +95,13 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         }
         return isAdded;
     }
-    public void clear() { //DONE
+    public void clear() {
         head = null;
         tail = null;
         size = 0;
         isSorted = true;
     }
-    public T get(int index) { //WORKS
+    public T get(int index) {
         Node<T> currNode = head;
         int currIndex = 0;
         if(index < 0 || index >= size || currNode == null) {
@@ -132,7 +132,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
             return i;
         }
     }
-    public boolean isEmpty() { //WORKS
+    public boolean isEmpty() {
         if(head == null && tail == null && size == 0) {
             return true;
         }
@@ -140,7 +140,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
             return false;
         }
     }
-    public int size() { //WORKS
+    public int size() {
         return size;
     }
     public void sort() { // Uses Insertion Sort
@@ -183,7 +183,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         }
     }
 
-    public T remove(int index) { //WORKS
+    public T remove(int index) {
         Node<T> prevNode = head;
         Node<T> currNode = head.getNext();
         int i = 1;
@@ -216,7 +216,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
            return currNode.getData();
        }
     }
-    public void equalTo(T element) { //WORKS
+    public void equalTo(T element) {
         if (head != null) { //non-empty list
             Node <T> prevNode = null;
             Node<T> currNode = head;
@@ -256,7 +256,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
             }
         }
     }
-    public void reverse() { //WORKS O(n)
+    public void reverse() {
         Node<T> prevNode = null;
         Node<T> currNode = head;
         Node<T> nextNode = null;
@@ -281,7 +281,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         isSorted = reverseSort;
     }
 
-    public void intersect(List<T> otherList) { //O(n * m) n is this size, m is other size
+    public void intersect(List<T> otherList) {
         if (otherList != null) {
             LinkedList<T> other = (LinkedList<T>) otherList;
             Node<T> thisPrev = null;
@@ -340,7 +340,7 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
         }
         return currMin;
     }
-    public T getMax() { //O(n)
+    public T getMax() {
         T currMax = null;
         if (head != null) {
 

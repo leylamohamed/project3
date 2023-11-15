@@ -26,6 +26,7 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
             isSorted = false;
         }
         return true;
+        //return false;
     }
 
     //method to resize array list if needed
@@ -58,10 +59,11 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
     public void clear() {
         for (int i = 0; i < size(); i++) {
             array[i] = null;
-            size--;
+            //size--;
         }
+        size = 0;
         isSorted = true;
-        T[] originalArray = (T[]) new Comparable[2];
+        //T[] originalArray = (T[]) new Comparable[2];
     }
 
     public T get(int index) {

@@ -1,6 +1,7 @@
 Group Members: Leyla Mohamed (moha1594), Cyrus Vang ()
 Contributions:
   Leyla Mohamed (LinkedList.java)
+  Cyrus Vang (ArrayList.java)
   
 How to compile:
 Assumptions: N/A

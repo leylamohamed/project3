@@ -1,1 +1,7 @@
+Runtime Analysis
 
+Method                            ArrayList Runtime    LinkedList Runtime     Explanation
+- boolean add (T element)         O()                  O(n)
+- T getMax()                      O()                  O(n)
+- intersect(List<T> otherList)    O()                  O()
+- reverse()                       O()                  O(n)

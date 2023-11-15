@@ -3,5 +3,5 @@ Runtime Analysis
 Method                            ArrayList Runtime    LinkedList Runtime     Explanation
 - boolean add (T element)         O()                  O(n)
 - T getMax()                      O()                  O(n)
-- intersect(List<T> otherList)    O()                  O()
+- intersect(List<T> otherList)    O()                  O(n * m)             
 - reverse()                       O()                  O(n)

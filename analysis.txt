@@ -1,7 +1,17 @@
 Runtime Analysis
 
-Method                            ArrayList Runtime    LinkedList Runtime     Explanation
-- boolean add (T element)         O()                  O(n)
+Method                            ArrayList Runtime    LinkedList Runtime    
+- boolean add (T element)         O()                  O(1)
 - T getMax()                      O()                  O(n)
 - intersect(List<T> otherList)    O()                  O(n * m)             
 - reverse()                       O()                  O(n)
+
+Explanation
+Linked List
+  - add(T element) is O(1) because it does not iterate through the linked list, and only adds an element to the end of the list if the element is not null. The time complexity of add(T element) remains constant regardless of the size of the linked list.
+  - getMax() is O(n) where n is the size of the linked list, because if the list is not sorted, it has to loop through the entire linked list, checking each node and comparing it to the current maximum, which is n times.
+  - intersect(List<T> otherList) is O(n * m) where n is the size of the calling list, and m is the size of the other list. This is because the intersect method has a while loop that loops through each node of the calling list (n times), and inside that loop there is a call to the helper method contains(LinkedList<T> currList, T element) which loops through the other list, and in the worst case, it checks the entire list (m times), which has a size of m. Since contains() is called within the while loop in the intersect method, then intersect(List<T> otherList) must have a time complexity of n * m.
+  - reverse() is O(n) where n is the size of the linked list, because it has to loop through the entire list and reverse the order of the nodes. The second while loop also checks each node to check if the list is sorted after reversing, and is independent of the first while loop.
+
+ArrayList
+  

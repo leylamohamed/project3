@@ -1,4 +1,4 @@
-//Written by Leyla Mohamed, moha1594
+//Written by Leyla Mohamed (moha1594) and Cyrus Vang (vang3339)
 public class LinkedList<T extends Comparable<T>> implements List<T> {
     private boolean isSorted;
     int size;

@@ -3,7 +3,7 @@ Contributions:
   Leyla Mohamed (LinkedList.java)
   Cyrus Vang (ArrayList.java)
   
-How to compile:
+How to compile: To compile all the files in the provided folder, run the JUnit tests to see if the files pass.
 Assumptions: N/A
 Bugs: N/A
 Outside Sources: 

@@ -156,19 +156,19 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
                 index++;
             }
             size--;
-            if (size() == 0) {
-                isSorted = true;
-            } else {
+            boolean removeSort = true;
+            if (size > 1) {
                 int i = 0;
-                isSorted = true;
-                while (i < index-2) {
+                while (i < size - 1 && removeSort) {
                     if (array[i].compareTo(array[i+1]) > 0) {
-                        isSorted = false;
-                        break;
+                        removeSort = false;
                     }
+
                     i++;
+
                 }
             }
+            isSorted = removeSort;
             return val;
         }
     }
@@ -197,6 +197,17 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
             left++;
             right--;
         }
+        boolean removeSort = true;
+        if (size > 1) {
+            int i = 0;
+            while (i < size - 1 && removeSort) {
+                if (array[i].compareTo(array[i+1]) > 0) {
+                    removeSort = false;
+                }
+                i++;
+            }
+        }
+        isSorted = removeSort;
     }
 
     public void intersect(List<T> otherList) { // sorts the given list and current list and merges them.

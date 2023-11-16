@@ -43,23 +43,6 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
     }
 
     public boolean add(int index, T element) { // adds element at specific index
-//        if (element == null || index < 0 || index >= array.length) { // sees if index is out of bounds
-//            return false;
-//        }
-//        if (size() == array.length) { //resizes array if necessary
-//            growArray();
-//        }
-//        for (int i = size(); i > index; i--) {
-//            array[i] = array[i - 1];
-//        }
-//        array[index] = element;
-//        size++;
-//
-//        if (isSorted && index > 0 && array[index].compareTo(array[index - 1]) < 0) { //updates isSorted variable to false if the element added breaks the current sorted order
-//            isSorted = false;
-//        }
-//        return true;
-
         if(index < 0 || index >= array.length){
             return false;
         } else {

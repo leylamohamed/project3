@@ -43,22 +43,57 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
     }
 
     public boolean add(int index, T element) { // adds element at specific index
-        if (element == null || index < 0 || index >= array.length) { // sees if index is out of bounds
-            return false;
-        }
-        if (size() == array.length) { //resizes array if necessary
-            growArray();
-        }
-        for (int i = size(); i > index; i--) {
-            array[i] = array[i - 1];
-        }
-        array[index] = element;
-        size++;
+//        if (element == null || index < 0 || index >= array.length) { // sees if index is out of bounds
+//            return false;
+//        }
+//        if (size() == array.length) { //resizes array if necessary
+//            growArray();
+//        }
+//        for (int i = size(); i > index; i--) {
+//            array[i] = array[i - 1];
+//        }
+//        array[index] = element;
+//        size++;
+//
+//        if (isSorted && index > 0 && array[index].compareTo(array[index - 1]) < 0) { //updates isSorted variable to false if the element added breaks the current sorted order
+//            isSorted = false;
+//        }
+//        return true;
 
-        if (isSorted && index > 0 && array[index].compareTo(array[index - 1]) < 0) { //updates isSorted variable to false if the element added breaks the current sorted order
-            isSorted = false;
+        if(index < 0 || index >= array.length){
+            return false;
+        } else {
+            if(size == array.length){
+                this.growArray();
+            }
+            for (int i = size()-1; i >= index; i--){
+                array[i+1] = array[i];
+            }
+            array[index] = element;
+            size++;
+
+            if(size() == 1){
+                isSorted = true;
+            }else {
+                //checks the case where the element is added at the beginning of the list
+                if (index == 0) {
+                    if (array[index].compareTo(array[index + 1]) > 0) {
+                        isSorted = false;
+                    }
+                }
+                //checks the case if the element is added at the end of the list
+                else if (index == size() - 1) {
+                    if (array[index].compareTo(array[index - 1]) < 0) {
+                        isSorted = false;
+                    }
+                }
+                //checks the case where the element is added between the beginning and the end of the list
+                else if (array[index].compareTo(array[index + 1]) > 0 || array[index].compareTo(array[index - 1]) < 0) {
+                    isSorted = false;
+                }
+            }
+            return true;
         }
-        return true;
     }
 
     public void clear() { // clears all elements from the list
@@ -165,100 +200,41 @@ public class ArrayList<T extends Comparable<T>> implements List<T> {
     }
 
     public void intersect(List<T> otherList) { // sorts the given list and current list and merges them.
-//        if (otherList != null) {
-//            this.sort();
-//            ArrayList<T> other = (ArrayList<T>) otherList;  // Copy the other list to avoid modifying it
-//            other.sort();
-//
-//            ArrayList<T> result = new ArrayList<>();
-//
-//            int i = 0;
-//            int j = 0;
-//
-//            while (i < this.size() && j < other.size()) {
-//                int comparison = this.get(i).compareTo(other.get(j));
-//
-//                if (comparison == 0) {
-//                    result.add(this.get(i));
-//                    i++;
-//                    j++;
-//                } else if (comparison < 0) {
-//                    i++;
-//                } else {
-//                    j++;
-//                }
-//            }
-//        isSorted = true;
-//        }
-
-
-        if (otherList != null) {
-            this.sort();
-            this.isSorted = true;
-            ArrayList<T> other = (ArrayList<T>) otherList;
-            other.sort();
-            T[] mergedArray = (T[]) new Comparable[this.size + other.size];
-            int index = 0;
-            int i = 0;
-            int j = 0;
-            mergedArray[index] = this.get(i);
-            while (i < this.size && j < other.size) {
-                if (this.get(i).compareTo(other.get(j)) < 0) {
-                    mergedArray[index] = this.get(i);
-                    index++;
-                    i++;
-                } else {
-                    mergedArray[index] = other.get(j);
-                    index++;
-                    j++;
-                }
-            }
-            while (i < this.size) {
-                mergedArray[index] = this.get(i);
-                index++;
-                i++;
-            }
-            while (j < other.size) {
-                mergedArray[index] = other.get(j);
-                index++;
-                j++;
-            }
-            array = mergedArray;
-            size = mergedArray.length;
-            isSorted = true;
+        if (otherList == null) {
+            return;  // Do not attempt to merge if otherList is null
         }
 
-//        if (otherList == null) {
-//            return;
-//        }
-//        sort();
-//        otherList.sort();
-//
-//        ArrayList<T> other = (ArrayList<T>) otherList;
-//        T[] mergedArray = (T[]) new Comparable[size() + other.size()];
-//
-//        int i = 0;
-//        int j = 0;
-//        int k = 0;
-//
-//        while (i < size() && j < other.size()) {
-//            if (array[i].compareTo(other.get(j)) <= 0) {
-//                mergedArray[k++] = array[i++];
-//            } else {
-//                mergedArray[k++] = other.get(j++);
-//            }
-//        }
-//
-//        while (i < size()) {
-//            mergedArray[k++] = array[i++];
-//        }
-//
-//        while (j < other.size()) {
-//            mergedArray[k++] = other.get(j++);
-//        }
-//
-//        array = mergedArray;
-//        isSorted = true;
+        ArrayList<T> other = (ArrayList<T>) otherList;
+        sort(); // Sort the current list
+        other.sort(); // Sort the other list
+
+        ArrayList<T> result = new ArrayList<>();
+
+        int i = 0;
+        int j = 0;
+
+        while (i < size() && j < other.size()) {
+            int comparison = get(i).compareTo(other.get(j));
+
+            if (comparison == 0) {
+                result.add(get(i));
+                i++;
+                j++;
+            } else if (comparison < 0) {
+                i++;
+            } else {
+                j++;
+            }
+        }
+
+        // Clear the current list and add elements from the result list
+        clear();
+        for (int k = 0; k < result.size(); k++) {
+            add(result.get(k));
+        }
+
+        // Update isSorted to true
+        isSorted = true;
     }
 
     public T getMin() { //returns the minimum value of the list, which is the first element
